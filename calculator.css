@@ -1,0 +1,46 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 10px;
+}
+
+.calculator{
+    background-color: black;
+}
+
+.calculator-keys{
+    display: grid;
+    grid-template-columns: repeat(4, 30px);
+    grid-template-rows: auto;
+    gap: 5px;
+    justify-items: center;
+    align-items: center;
+}
+
+button:hover{
+    background-color: gray;
+}
+
+button{
+    margin: 1px;
+    border-radius: 5%;
+    border: none;
+    font-weight: initial;
+    font-size: 2em;
+    font-family: monospace;
+    color: black;
+}
+
+.operator{
+    background-color: red;
+}
+
+.operand{
+    background-color: orange;
+}
+
+.zero{
+    background-color: blue;
+}
