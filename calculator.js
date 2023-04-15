@@ -6,6 +6,15 @@ const calculator = {
     operator: '',
 };
 
+document.querySelector('.clear-all').addEventListener('click', ()=>{
+    calculator.displayValue = '0';
+    calculator.firstOperand = '';
+    calculator.secondOperand = '';
+    calculator.readyForNextOperand = false;
+    calculator.operator = '';
+    updateScreen();
+});
+
 const numbers = document.querySelectorAll('.operand');
 for (let i=0; i<numbers.length;i++){
     numbers[i].addEventListener('click', (event)=>{
