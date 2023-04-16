@@ -194,7 +194,14 @@ function keyboardInput(e){
         inputDecimal();
     }
     else if (e.key === '=' || e.key === 'Enter'){ 
-        operate(calculator.firstOperand, calculator.operator, calculator.secondOperand);
+        let calculation = operate(calculator.firstOperand, calculator.operator, calculator.secondOperand);
+        calculator.displayValue = calculation;
+        calculator.firstOperand = calculation;
+        calculator.secondOperand = '';
+        calculator.readyForNextOperand = true;
+        calculator.operator = '';
+        updateZeroAndDecimal();
+        updateScreen();
     }
     else if (e.key === 'Backspace'){
         deleteNumber();
@@ -203,8 +210,7 @@ function keyboardInput(e){
         clearAll();
     }
     else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/'){
-        calculator.operator=e.key;
-        updateScreen();
+        inputOperator(e.key);
     }
 }
 
