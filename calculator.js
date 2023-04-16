@@ -6,8 +6,12 @@ const calculator = {
     displayingDecimal: false,
     operator: '',
 };
+document.addEventListener('keydown', keyboardInput);
+document.querySelector('.decimal').addEventListener('click', inputDecimal);
+document.querySelector('#clear-all').addEventListener('click', clearAll);
+document.querySelector('#delete').addEventListener('click', deleteNumber);
 
-document.querySelector('#clear-all').addEventListener('click', ()=>{
+function clearAll() {
     calculator.displayValue = '0';
     calculator.firstOperand = '';
     calculator.secondOperand = '';
@@ -16,7 +20,7 @@ document.querySelector('#clear-all').addEventListener('click', ()=>{
     calculator.operator = '';
     updateZeroAndDecimal();
     updateScreen();
-});
+};
 const zilch = document.getElementById('zero');
 const numbers = document.querySelectorAll('.operand');
 for (let i=0; i<numbers.length;i++){
@@ -54,26 +58,27 @@ document.querySelector('.equal-sign').addEventListener('click', ()=>{
     updateZeroAndDecimal();
     updateScreen();
 });
-document.querySelector('.decimal').addEventListener('click', ()=>{
-    if (calculator.readyForNextOperand === false){
-        calculator.firstOperand+='.';
+
+function inputDecimal() {
+    if (calculator.readyForNextOperand === false) {
+        calculator.firstOperand += '.';
         calculator.displayingDecimal = true;
         document.querySelector('.decimal').classList.add('hide');
         zilch.classList.add('double-width');
         calculator.displayValue = calculator.firstOperand;
         console.log("input number is: " + calculator.firstOperand);
-        updateScreen();}
-    else{
-        calculator.secondOperand+='.';
+        updateScreen();
+    } else {
+        calculator.secondOperand += '.';
         calculator.displayingDecimal = true;
         document.querySelector('.decimal').classList.add('hide');
         zilch.classList.add('double-width');
-        calculator.displayValue=calculator.secondOperand;
+        calculator.displayValue = calculator.secondOperand;
         console.log("second input number is: " + calculator.secondOperand);
         updateScreen();
     }
     updateZeroAndDecimal();
-});
+}
 function updateZeroAndDecimal() {
     const equalSign = document.querySelector('.equal-sign');
     const decimal = document.querySelector('.decimal');
@@ -165,5 +170,41 @@ function multiplication(a,b){
 
 function division(a,b){
     return Math.round((a/b)*1000)/1000;;
+}
+function deleteNumber(){
+    if(calculator.readyForNextOperand === false){
+        const editedText = calculator.firstOperand.slice(0, -1);
+        calculator.firstOperand = editedText;
+        calculator.displayValue = calculator.firstOperand;
+        updateScreen();
+    }
+    else{
+        const editedText = calculator.secondOperand.slice(0, -1);
+        calculator.secondOperand = editedText;
+        calculator.displayValue = calculator.secondOperand;
+        updateScreen();
+    }
+}
+function keyboardInput(e){
+    console.log(e.key);
+    if(e.key >= 0 && e.key <= 9){
+        inputNumber(e.key);
+    }
+    else if(e.key === '.'){
+        inputDecimal();
+    }
+    else if (e.key === '=' || e.key === 'Enter'){ 
+        operate(calculator.firstOperand, calculator.operator, calculator.secondOperand);
+    }
+    else if (e.key === 'Backspace'){
+        deleteNumber();
+    }
+    else if (e.key === 'Escape'){
+        clearAll();
+    }
+    else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/'){
+        calculator.operator=e.key;
+        updateScreen();
+    }
 }
 
