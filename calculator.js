@@ -33,6 +33,29 @@ for (let i=0; i<operators.length;i++){
         updateScreen();      
     })
 }
+document.querySelector('.equal-sign').addEventListener('click', ()=>{
+    let calculation = operate(calculator.firstOperand, calculator.operator, calculator.secondOperand);
+    console.log('you should see a calculation of ' + calculation);
+    calculator.displayValue = calculation;
+    calculator.firstOperand = calculation;
+    calculator.secondOperand = '';
+    calculator.readyForNextOperand = true;
+    calculator.operator = '';
+    updateScreen();
+});
+document.querySelector('.decimal').addEventListener('click', ()=>{
+    if (calculator.readyForNextOperand === false){
+        calculator.firstOperand+='.';
+        calculator.displayValue = calculator.firstOperand;
+        console.log("input number is: " + calculator.firstOperand);
+        updateScreen();}
+    else{
+        calculator.secondOperand+='.';
+        calculator.displayValue=calculator.secondOperand;
+        console.log("second input number is: " + calculator.secondOperand);
+        updateScreen();
+    }
+});
 function inputNumber(number){
     if (calculator.readyForNextOperand === false){
         calculator.firstOperand+=number;
@@ -57,17 +80,6 @@ function updateScreen(){
     display = document.getElementById('calculator-screen');
     display.textContent = calculator.displayValue;
 }
-document.querySelector('.equal-sign').addEventListener('click', ()=>{
-    let calculation = operate(calculator.firstOperand, calculator.operator, calculator.secondOperand);
-    console.log('you should see a calculation of ' + calculation);
-    calculator.displayValue = calculation;
-    calculator.firstOperand = calculation;
-    calculator.secondOperand = '';
-    calculator.readyForNextOperand = true;
-    calculator.operator = '';
-    updateScreen();
-});
-
 function operate(num1, op, num2){
     const a = parseFloat(num1);
     const b = parseFloat(num2);
