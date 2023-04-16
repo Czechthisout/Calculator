@@ -76,32 +76,32 @@ document.querySelector('.decimal').addEventListener('click', ()=>{
 });
 function updateZeroAndDecimal() {
     const equalSign = document.querySelector('.equal-sign');
-
-    if (calculator.operator === '/' && calculator.readyForNextOperand) {
+    const decimal = document.querySelector('.decimal');
+    if (calculator.operator === '/' && calculator.readyForNextOperand && calculator.secondOperand==='') {
         zilch.classList.add('hide');
-        document.querySelector('.decimal').classList.add('double-width');
+        decimal.classList.add('double-width');
         console.log('a');
     } else {
         zilch.classList.remove('hide', 'double-width');
-        document.querySelector('.decimal').classList.remove('hide', 'double-width');
+        decimal.classList.remove('hide', 'double-width');
         console.log('b');
     }
 
     if (calculator.readyForNextOperand === false && calculator.firstOperand.includes('.')) {
-        document.querySelector('.decimal').classList.add('hide');
+        decimal.classList.add('hide');
         zilch.classList.add('double-width');
         console.log('c');
     } else if (calculator.readyForNextOperand === true && calculator.secondOperand.includes('.')) {
-        document.querySelector('.decimal').classList.add('hide');
+        decimal.classList.add('hide');
         zilch.classList.add('double-width');
         console.log('d');
     } else {
-        document.querySelector('.decimal').classList.remove('hide');
+        decimal.classList.remove('hide');
         zilch.classList.remove('double-width');
         console.log('e');
     }
 
-    if (calculator.operator === '/' && calculator.readyForNextOperand && calculator.secondOperand.includes('.')) {
+    if (equalSign.querySelector('.hide') && decimal.querySelector('.hide')) {
         equalSign.classList.add('quadruple-width');
         console.log('f');
     } else {
