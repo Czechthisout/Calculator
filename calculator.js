@@ -98,18 +98,18 @@ function operate(num1, op, num2){
     }
 }
 function addition(a, b){
-    return a+b;
+    return Math.round((a+b)*1000)/1000;
 }
 
 function subtraction(a,b){
-    return a-b;
+    return Math.round((a-b)*1000)/1000;
 }
 
 function multiplication(a,b){
-    return a*b;
+    return Math.round((a*b)*1000)/1000;;
 }
 
 function division(a,b){
-    return a/b;
+    return Math.round((a/b)*1000)/1000;;
 }
 
