@@ -3,6 +3,7 @@ const calculator = {
     firstOperand: '',
     secondOperand: '',
     readyForNextOperand: false,
+    displayingDecimal: false,
     operator: '',
 };
 
@@ -11,10 +12,12 @@ document.querySelector('#clear-all').addEventListener('click', ()=>{
     calculator.firstOperand = '';
     calculator.secondOperand = '';
     calculator.readyForNextOperand = false;
+    calculator.displayingDecimal = false;
     calculator.operator = '';
+    updateZeroAndDecimal();
     updateScreen();
 });
-
+const zilch = document.getElementById('zero');
 const numbers = document.querySelectorAll('.operand');
 for (let i=0; i<numbers.length;i++){
     numbers[i].addEventListener('click', (event)=>{
@@ -30,7 +33,14 @@ for (let i=0; i<operators.length;i++){
         calculator.displayValue += event.target.value;
         inputOperator(event.target.value);
         console.log(event.target.value);
-        updateScreen();      
+        updateScreen();
+        if (event.target.value === '/') {
+           document.querySelector('#zero').classList.add('hide');
+           document.querySelector('.decimal').classList.add('double-width');} 
+        else {
+           zilch.classList.remove('hide', 'double-width');
+           document.querySelector('.decimal').classList.remove('hide', 'double-width');
+        }      
     })
 }
 document.querySelector('.equal-sign').addEventListener('click', ()=>{
@@ -41,21 +51,64 @@ document.querySelector('.equal-sign').addEventListener('click', ()=>{
     calculator.secondOperand = '';
     calculator.readyForNextOperand = true;
     calculator.operator = '';
+    updateZeroAndDecimal();
     updateScreen();
 });
 document.querySelector('.decimal').addEventListener('click', ()=>{
     if (calculator.readyForNextOperand === false){
         calculator.firstOperand+='.';
+        calculator.displayingDecimal = true;
+        document.querySelector('.decimal').classList.add('hide');
+        zilch.classList.add('double-width');
         calculator.displayValue = calculator.firstOperand;
         console.log("input number is: " + calculator.firstOperand);
         updateScreen();}
     else{
         calculator.secondOperand+='.';
+        calculator.displayingDecimal = true;
+        document.querySelector('.decimal').classList.add('hide');
+        zilch.classList.add('double-width');
         calculator.displayValue=calculator.secondOperand;
         console.log("second input number is: " + calculator.secondOperand);
         updateScreen();
     }
+    updateZeroAndDecimal();
 });
+function updateZeroAndDecimal() {
+    const equalSign = document.querySelector('.equal-sign');
+
+    if (calculator.operator === '/' && calculator.readyForNextOperand) {
+        zilch.classList.add('hide');
+        document.querySelector('.decimal').classList.add('double-width');
+        console.log('a');
+    } else {
+        zilch.classList.remove('hide', 'double-width');
+        document.querySelector('.decimal').classList.remove('hide', 'double-width');
+        console.log('b');
+    }
+
+    if (calculator.readyForNextOperand === false && calculator.firstOperand.includes('.')) {
+        document.querySelector('.decimal').classList.add('hide');
+        zilch.classList.add('double-width');
+        console.log('c');
+    } else if (calculator.readyForNextOperand === true && calculator.secondOperand.includes('.')) {
+        document.querySelector('.decimal').classList.add('hide');
+        zilch.classList.add('double-width');
+        console.log('d');
+    } else {
+        document.querySelector('.decimal').classList.remove('hide');
+        zilch.classList.remove('double-width');
+        console.log('e');
+    }
+
+    if (calculator.operator === '/' && calculator.readyForNextOperand && calculator.secondOperand.includes('.')) {
+        equalSign.classList.add('quadruple-width');
+        console.log('f');
+    } else {
+        equalSign.classList.remove('quadruple-width');
+        console.log('g');
+    }
+}
 function inputNumber(number){
     if (calculator.readyForNextOperand === false){
         calculator.firstOperand+=number;
@@ -68,12 +121,13 @@ function inputNumber(number){
         console.log("second input number is: " + calculator.secondOperand);
         updateScreen();
     }
+    updateZeroAndDecimal();
 }
 function inputOperator(operator){
     calculator.operator = operator;
-    //calculator.firstOperand = parseFloat(displayValue);
     calculator.readyForNextOperand = true;
     console.log("the current operator is: " + calculator.operator);
+    updateZeroAndDecimal();
     updateScreen();
 }
 function updateScreen(){
