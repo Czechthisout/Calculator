@@ -8,17 +8,26 @@ body{
 
 .calculator{
     background-color: black;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #calculator-screen{
-    background-color: gray;
+    background-color: lightgray;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    font-size: 1.5em;
+    color: black;
 }
 
 .calculator-keys{
     display: grid;
-    grid-template-columns: repeat(4, 30px);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     gap: 5px;
     justify-items: center;
@@ -31,12 +40,14 @@ button:hover{
 
 button{
     margin: 1px;
-    border-radius: 5%;
+    border-radius: 5px;
     border: none;
     font-weight: initial;
     font-size: 2em;
     font-family: monospace;
     color: black;
+    padding: 5px;
+    width: 100%;
 }
 
 .operator{
@@ -47,6 +58,11 @@ button{
     background-color: orange;
 }
 
-.zero{
-    background-color: blue;
+.equal-sign{
+    /* background-color:blanchedalmond; */
+    grid-column: span 2;
+}
+
+.double-width {
+    grid-column: span 2;
 }

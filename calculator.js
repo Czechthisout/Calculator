@@ -6,7 +6,7 @@ const calculator = {
     operator: '',
 };
 
-document.querySelector('.clear-all').addEventListener('click', ()=>{
+document.querySelector('#clear-all').addEventListener('click', ()=>{
     calculator.displayValue = '0';
     calculator.firstOperand = '';
     calculator.secondOperand = '';
