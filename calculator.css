@@ -20,6 +20,7 @@ body{
     width: 200px;
     padding: 10px;
     border-radius: 5px;
+    box-shadow: var(--shadow-elevation-high);
 }
 
 #calculator-screen{
@@ -110,6 +111,7 @@ button{
     cursor: pointer;
     z-index: 20;
     transition: background-color 0.2s ease-in;
+    box-shadow: var(--shadow-elevation-high);
 }
 
 .primer-box {
@@ -125,6 +127,7 @@ button{
     transform-origin: right;
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     z-index: 10;
+    box-shadow: var(--shadow-elevation-high);
 }
 .primer-btn:hover {
     background-color: darkorange;
@@ -166,4 +169,25 @@ footer{
     justify-content: center;
     align-items: center;
     bottom: 20px;
+}
+
+:root {
+    --shadow-color: 0deg 0% 61%;
+    --shadow-elevation-low:
+      0.2px 0.2px 0.3px hsl(var(--shadow-color) / 0.54),
+      0.2px 0.2px 0.3px -1.9px hsl(var(--shadow-color) / 0.42),
+      0.6px 0.6px 0.8px -3.8px hsl(var(--shadow-color) / 0.29);
+    --shadow-elevation-medium:
+      0.2px 0.2px 0.3px hsl(var(--shadow-color) / 0.57),
+      0.4px 0.4px 0.5px -1.3px hsl(var(--shadow-color) / 0.47),
+      1.2px 1.1px 1.5px -2.5px hsl(var(--shadow-color) / 0.37),
+      3.2px 3.1px 4.1px -3.8px hsl(var(--shadow-color) / 0.28);
+    --shadow-elevation-high:
+      0.2px 0.2px 0.3px hsl(var(--shadow-color) / 0.6),
+      0.6px 0.6px 0.8px -0.6px hsl(var(--shadow-color) / 0.54),
+      1.4px 1.4px 1.8px -1.3px hsl(var(--shadow-color) / 0.48),
+      2.9px 2.8px 3.7px -1.9px hsl(var(--shadow-color) / 0.42),
+      5.6px 5.4px 7.2px -2.5px hsl(var(--shadow-color) / 0.37),
+      9.9px 9.6px 12.8px -3.2px hsl(var(--shadow-color) / 0.31),
+      16.4px 15.8px 21.2px -3.8px hsl(var(--shadow-color) / 0.25);
 }

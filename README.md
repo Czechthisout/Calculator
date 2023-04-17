@@ -14,7 +14,9 @@ More information can be found in this article: [How to Use HTML to Open a Link i
 
 CSS animations allowed me to create smooth and visually appealing effects. In this project, I used the `@keyframes` rule to define an animation that rotates an element. I then applied this animation on hover to create a spinning effect for the GitHub logo.
 
-In addition to the spinning animation, I learned about the use of the general sibling combinator (`~`) in CSS to create a popover effect. The `~` symbol allows us to target elements that share the same parent and come after the specified element. In the popover code, I used the `~` symbol to target and style the `.primer-box` and `.primer-btn` elements when the `.primer-toggle` input is checked:
+In addition to the spinning animation, I learned about the use of the general sibling combinator (`~`) in CSS to create a popover effect. The `~` symbol allows us to target elements that share the same parent and come after the specified element. In the popover code, I used the `~` symbol to target and style the `.primer-box` and `.primer-btn` elements when the `.primer-toggle` input is checked.
+
+Finally, I will shout-out Josh Comeau again and his [Shadow Pallet Generator](https://www.joshwcomeau.com/shadow-palette/), which is well-explained in an earlier blog on the same [topic](https://www.joshwcomeau.com/css/designing-shadows/). Never again shall I use typical box shadows. 
 
 ### CSS Bonus :star:
 - I learned learned about a new frontend *philosophy*: [thinking in actions, not in "states" for beautiful front-end development](https://www.joshwcomeau.com/animation/css-transitions/)
