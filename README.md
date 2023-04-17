@@ -1,6 +1,8 @@
 # Calculator Project - Lessons Learned
 
-In this calculator project, I learned a lot about HTML, CSS, and JavaScript. Below are some of the key takeaways from the project.
+In this calculator project, I worked on new objects in JavaScript and had a chance to practice my CSS styling and animations. I'm particularly proud of the novel calculator design, where the UI is dynamically updated so that users are not even given the chance to input a second decimal or divide by zero. I also wanted to try adding a CSS-only popover animation, which I think is pretty slick (and leads users to easy-to-understand math problems anybody can test on this basic calculator, which are nevertheless unsolved). 
+
+Beyond that, below are some of the key takeaways from the project:
 
 ## Opening Links in a New Tab
 

@@ -25,7 +25,7 @@ const zilch = document.getElementById('zero');
 const numbers = document.querySelectorAll('.operand');
 for (let i=0; i<numbers.length;i++){
     numbers[i].addEventListener('click', (event)=>{
-        calculator.displayValue = event.target.value;
+        //calculator.displayValue = event.target.value;
         inputNumber(event.target.value);
         console.log(event.target.value);
         updateScreen();
@@ -91,7 +91,6 @@ function updateZeroAndDecimal() {
         decimal.classList.remove('hide', 'double-width');
         console.log('b');
     }
-
     if (calculator.readyForNextOperand === false && calculator.firstOperand.includes('.')) {
         decimal.classList.add('hide');
         zilch.classList.add('double-width');
@@ -115,6 +114,11 @@ function updateZeroAndDecimal() {
     }
 }
 function inputNumber(number){
+    if (calculator.readyForNextOperand) {
+        calculator.displayValue = '';
+        //calculator.firstOperand = '';
+        //calculator.readyForNextOperand = false;
+    }
     if (calculator.readyForNextOperand === false){
         calculator.firstOperand+=number;
         calculator.displayValue = calculator.firstOperand;
@@ -128,13 +132,55 @@ function inputNumber(number){
     }
     updateZeroAndDecimal();
 }
-function inputOperator(operator){
-    calculator.operator = operator;
-    calculator.readyForNextOperand = true;
-    console.log("the current operator is: " + calculator.operator);
-    updateZeroAndDecimal();
-    updateScreen();
+// function inputOperator(operator){
+//     calculator.operator = operator;
+//     calculator.readyForNextOperand = true;
+//     console.log("the current operator is: " + calculator.operator);
+//     updateZeroAndDecimal();
+//     updateScreen();
+// }
+// function inputOperator(operator) {
+//     if (calculator.firstOperand !== '' && calculator.secondOperand !== '' && calculator.secondOperand) {
+//         calculator.firstOperand = operate(
+//             calculator.firstOperand,
+//             calculator.operator,
+//             calculator.secondOperand
+//         );
+//         calculator.secondOperand = '';
+//     }
+//     calculator.operator = operator;
+//     calculator.readyForNextOperand = true;
+//     console.log("the current operator is: " + calculator.operator);
+//     updateZeroAndDecimal();
+//     updateScreen();
+// }
+function inputOperator(operator) {
+    if (calculator.firstOperand !== '' && calculator.secondOperand !== '') {
+        calculator.firstOperand = operate(
+            calculator.firstOperand,
+            calculator.operator,
+            calculator.secondOperand
+        );
+        calculator.secondOperand = '';
+        calculator.operator = operator;
+        calculator.readyForNextOperand = true;
+        updateZeroAndDecimal();
+        updateScreen();
+    } else if (calculator.readyForNextOperand) {
+        calculator.operator = operator;
+        calculator.readyForNextOperand = true;
+        console.log("the current operator is: " + calculator.operator);
+        updateZeroAndDecimal();
+        updateScreen();
+    } else {
+        calculator.operator = operator;
+        calculator.readyForNextOperand = true;
+        console.log("the current operator is: " + calculator.operator);
+        updateZeroAndDecimal();
+        updateScreen();
+    }
 }
+
 function updateScreen(){
     display = document.getElementById('calculator-screen');
     display.textContent = calculator.displayValue;
@@ -149,7 +195,7 @@ function operate(num1, op, num2){
     else if (op==='-'){
         return subtraction(a, b);
     }
-    else if(op==='*'){
+    else if (op === 'x' || op === '*'){ 
         return multiplication(a, b);
     }
     else if(op==='/'){
@@ -187,13 +233,17 @@ function deleteNumber(){
 }
 function keyboardInput(e){
     console.log(e.key);
-    if(e.key >= 0 && e.key <= 9){
+    if (e.key === "Shift") {
+        return;
+    }
+    else if(e.key >= 0 && e.key <= 9){
         inputNumber(e.key);
     }
     else if(e.key === '.'){
         inputDecimal();
     }
     else if (e.key === '=' || e.key === 'Enter'){ 
+        e.preventDefault();
         let calculation = operate(calculator.firstOperand, calculator.operator, calculator.secondOperand);
         calculator.displayValue = calculation;
         calculator.firstOperand = calculation;
@@ -209,9 +259,13 @@ function keyboardInput(e){
     else if (e.key === 'Escape'){
         clearAll();
     }
-    else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/'){
+    else if (e.key === '+' || e.key === '-' || e.key === 'x' || e.key === '*' || e.key === '/') {
         e.preventDefault();
-        inputOperator(e.key);
-    }
+        if (e.key === '*') {
+            inputOperator('x');
+        } else {
+            inputOperator(e.key);
+        }
+    }    
 }
 
