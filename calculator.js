@@ -210,6 +210,7 @@ function keyboardInput(e){
         clearAll();
     }
     else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/'){
+        e.preventDefault();
         inputOperator(e.key);
     }
 }
