@@ -14,16 +14,16 @@ CSS animations allowed me to create smooth and visually appealing effects. In th
 
 In addition to the spinning animation, I learned about the use of the general sibling combinator (`~`) in CSS to create a popover effect. The `~` symbol allows us to target elements that share the same parent and come after the specified element. In the popover code, I used the `~` symbol to target and style the `.primer-box` and `.primer-btn` elements when the `.primer-toggle` input is checked:
 
-```css
-    .primer-toggle:checked ~ .primer-box {
-        opacity: 1;
-        transform: translateY(0);
-        transition: opacity 0.2s ease-in, transform 0.2s ease-in;
-    }
-
-    .primer-toggle:checked ~ .primer-btn {
-        background-color: darkorange;
-    }
+>css
+>.primer-toggle:checked ~ .primer-box {
+>    opacity: 1;
+>    transform: translateY(0);
+>    transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+>}
+>
+>.primer-toggle:checked ~ .primer-btn {
+>    background-color: darkorange;
+>}
 
 ### CSS Bonus :star:
 - I learned learned about a new frontend *philosophy*: [thinking in actions, not in "states" for beautiful front-end development](https://www.joshwcomeau.com/animation/css-transitions/)
