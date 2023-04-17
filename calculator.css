@@ -1,3 +1,12 @@
+@keyframes spin {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 body{
     display: flex;
     justify-content: center;
@@ -32,6 +41,9 @@ body{
     gap: 5px;
     justify-items: center;
     align-items: center;
+    filter: drop-shadow(
+    1px 2px 4px hsl(0, 4%, 36%)
+  );
 }
 
 button:hover{
@@ -52,7 +64,7 @@ button{
 }
 
 .operator{
-    background-color: red;
+    background-color: #B0B0B0;
 }
 
 .operand{
@@ -75,4 +87,82 @@ button{
 .hide {
     display: none;
 }
-  
+
+.primer-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.primer-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.5em;
+    border-radius: 50%;
+    background-color: orange;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: background-color 0.2s ease-in;
+}
+
+.primer-box {
+    position: fixed;
+    background-color: lightgray;
+    bottom: 60px;
+    right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 250px;
+    opacity: 0;
+    transform: translateX(50px) scale(0.8);
+    transform-origin: right;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    z-index: 10;
+}
+.primer-btn:hover {
+    background-color: darkorange;
+}
+
+.primer-toggle:checked ~ .primer-box {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+}
+
+.primer-toggle:checked ~ .primer-btn {
+    background-color: darkorange;
+}
+
+#Github-logo{
+    width: 15px;
+    height: 15px;
+}
+
+#Github-logo:hover{
+    animation: spin .5s ease-in;
+}
+
+a{
+    text-decoration:none;
+    color: black;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
