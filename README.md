@@ -23,7 +23,7 @@ In addition to the spinning animation, I learned about the use of the general si
 
 .primer-toggle:checked ~ .primer-btn {
     background-color: darkorange;
-}
+}```
 
 ### CSS Bonus :star:
 - I learned learned about a new frontend *philosophy*: [thinking in actions, not in "states" for beautiful front-end development](https://www.joshwcomeau.com/animation/css-transitions/)
