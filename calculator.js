@@ -180,7 +180,6 @@ function inputOperator(operator) {
         updateScreen();
     }
 }
-
 function updateScreen(){
     display = document.getElementById('calculator-screen');
     display.textContent = calculator.displayValue;
